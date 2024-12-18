@@ -2,6 +2,12 @@
 
 namespace Abruno\Rubrica;
 
+/**
+ * Rappresenta una configurazione per una specifica Route.
+ *
+ * Questa classe viene utilizzata per definire una Route specificando il suo pattern
+ * e il delegato ad essa associato.
+ */
 class RouteConfig{
 
     public string $pattern;

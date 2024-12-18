@@ -53,7 +53,7 @@ class Route {
 	}
 
 	/**
-	 * Restituisce una RouteConfig presa dall'array di config trasmesso in base alla URI
+	 * Restituisce una RouteConfig presa dal array di config trasmesso in base alla URI
 	 *
 	 * @param array $routes Le RouteConfig tra cui scegliere
 	 * @param string $uri La URI da valutare
