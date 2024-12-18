@@ -7,11 +7,6 @@ Questo progetto consiste in una **Rubrica** sviluppata in PHP puro, senza l'uso 
 - [Caratteristiche](#caratteristiche)
 - [Tecnologie Utilizzate](#tecnologie-utilizzate)
 - [Installazione](#installazione)
-- [Utilizzo](#utilizzo)
-- [Requisiti di Sistema](#requisiti-di-sistema)
-- [Contributi](#contributi)
-- [Autore](#autore)
-
 
 ## Obiettivo del Progetto
 
