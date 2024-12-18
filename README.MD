@@ -59,7 +59,7 @@ Il progetto è organizzato come segue:
 
 4. Se esegui con docker, esegui il comando:
    ```bash
-   docker-compose up
+   docker-compose up -d
    ```
    Nota bene che il docker-compose crea un container in base alle specifiche presenti nel `docker-compose.yml` presente nel progetto. Se la porta configurata è occupata configurane pure un'altra libera.
    ```yml
@@ -72,5 +72,6 @@ Il progetto è organizzato come segue:
     volumes:
     - ./:/var/www/
    ```
+   Con il comando `docker-compose down` distruggete il container, mentre con il comando `docker-compose up -d --build` ricreate `immagine` e `container`.
 
 5. Apri il browser e visita: [http://localhost:8096](http://localhost:8096). (nota bene che la porta corrisponde a quella della configurazione di docker-compose)
