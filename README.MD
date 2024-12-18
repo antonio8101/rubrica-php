@@ -67,4 +67,4 @@ Il progetto è organizzato come segue:
     - ./:/var/www/
    ```
 
-4. Apri il browser e visita: [http://localhost:8096](http://localhost:8096). (nota bene che la porta corrisponde a quella della configurazione di docker-compose)
+5. Apri il browser e visita: [http://localhost:8096](http://localhost:8096). (nota bene che la porta corrisponde a quella della configurazione di docker-compose)
