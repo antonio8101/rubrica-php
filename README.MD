@@ -2,6 +2,17 @@
 
 Questo progetto consiste in una **Rubrica** sviluppata in PHP puro, senza l'uso di framework come Laravel o simili. È pensato come esercizio conclusivo del **Modulo 2 del corso di Back End Web Development**, con l'obiettivo di mettere in pratica i costrutti fondamentali del linguaggio PHP.
 
+- [Obiettivo del Progetto](#obiettivo-del-progetto)
+- [Struttura del Progetto](#struttura-del-progetto)
+- [Caratteristiche](#caratteristiche)
+- [Tecnologie Utilizzate](#tecnologie-utilizzate)
+- [Installazione](#installazione)
+- [Utilizzo](#utilizzo)
+- [Requisiti di Sistema](#requisiti-di-sistema)
+- [Contributi](#contributi)
+- [Autore](#autore)
+
+
 ## Obiettivo del Progetto
 
 L'obiettivo principale di questo progetto è fornire un'applicazione base per la gestione di una rubrica, permettendo di:
