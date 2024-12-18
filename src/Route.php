@@ -4,39 +4,72 @@ namespace Abruno\Rubrica;
 
 class Route {
 
-    private static array $get = [];
-    private static array $post = [];
+	private static array $get = [];
+	private static array $post = [];
 
-    public static function Resolve(): RouteConfig{
+	/**
+	 * Risolve una richiesta HTTP, in base al metodo ritornando una delle RouteConfig predisposte nei 2 archivi statici
+	 *
+	 * @return RouteConfig
+	 * @throws \Exception
+	 */
+	public static function Resolve(): RouteConfig {
 
-        $uri = $_SERVER['REQUEST_URI'];
+		$uri = $_SERVER['REQUEST_URI'];
 
-        if ($_SERVER['REQUEST_METHOD'] == "GET"){
+		if ( $_SERVER['REQUEST_METHOD'] == "GET" ) {
+			return self::ResolvePage( self::$get, $uri );
+		}
 
-            foreach(self::$get as $value){
-                if($value->pattern == $uri){
-                    return $value;                    
-                }
-            };
+		if ( $_SERVER['REQUEST_METHOD'] == "POST" ) {
+			return self::ResolvePage( self::$post, $uri );
+		}
 
-            return new RouteConfig("*", function() {
-                return "not-found";
-            });
-            
-        }
+		throw new \Exception( "Method not allowed" );
+	}
 
-        if ($_SERVER['REQUEST_METHOD'] == "POST"){
-            $matching = array_filter(self::$post, fn($config) => $config->pattern == $uri);
-            return $matching[0];
-        }
+	/**
+	 * Consente di impostare una RouteConfig nell'archivio delle configurazioni GET
+	 *
+	 * @param string $route
+	 * @param callable $delegate
+	 *
+	 * @return void
+	 */
+	public static function Get( string $route, callable $delegate ): void {
+		self::$get[] = new RouteConfig( $route, $delegate );
+	}
 
-        throw new \Exception("Method not allowed");
-    }
-    public static function Get(string $route, callable $delegate){
-        self::$get[] = new RouteConfig($route, $delegate);
-    }
-    public static function Post(string $route, callable $delegate){
-        self::$post[] = new RouteConfig($route, $delegate);
-    }
+	/**
+	 * Consente di impostare una RouteConfig nell'archivio delle configurazioni POST
+	 *
+	 * @param string $route
+	 * @param callable $delegate
+	 *
+	 * @return void
+	 */
+	public static function Post( string $route, callable $delegate ): void {
+		self::$post[] = new RouteConfig( $route, $delegate );
+	}
+
+	/**
+	 * Restituisce una RouteConfig presa dall'array di config trasmesso in base alla URI
+	 *
+	 * @param array $routes Le RouteConfig tra cui scegliere
+	 * @param string $uri La URI da valutare
+	 *
+	 * @return RouteConfig La RouteConfig corrispondente
+	 */
+	private static function ResolvePage( array $routes, string $uri ): RouteConfig {
+		foreach ( $routes as $value ) {
+			if ( $value->pattern == $uri ) {
+				return $value;
+			}
+		};
+
+		return new RouteConfig( "*", function () {
+			return "not-found";
+		} );
+	}
 
 }
