@@ -2,21 +2,15 @@
 
 namespace Abruno\Rubrica\pages;
 
-use Twig\Environment;
-use Twig\Loader\FilesystemLoader;
+use Abruno\Rubrica\View;
 
 class ContactForm implements ActionContract{
 
     public function respond(): string{
 
-        $loader = new FilesystemLoader("/var/www/src/templates");
+        $view = new View();
 
-        $twig = new Environment($loader, [
-            'auto_reload' => true,
-            'debug' => true
-        ]);
-
-        return $twig->render("form.html.twig", [
+        return $view->render("form.html.twig", [
             "test" => "IT WORKS!!!"
         ]);
 

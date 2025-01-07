@@ -2,21 +2,15 @@
 
 namespace Abruno\Rubrica\pages;
 
-use Twig\Environment;
-use Twig\Loader\FilesystemLoader;
+use Abruno\Rubrica\View;
 
 class ContactList implements ActionContract{
 
     public function respond(): string{
 
-        $loader = new FilesystemLoader("/var/www/src/templates");
+        $view = new View();
 
-        $twig = new Environment($loader, [
-            'auto_reload' => true,
-            'debug' => true
-        ]);
-
-        return $twig->render("list.html.twig", [
+        return $view->render("list.html.twig", [
             "contacts" => ["Antonio", "Paolo", "Giuseppe"]
         ]);
 
