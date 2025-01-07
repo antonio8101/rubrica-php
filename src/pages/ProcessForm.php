@@ -2,11 +2,11 @@
 
 namespace Abruno\Rubrica\pages;
 
-class ContactList implements ActionContract{
+class ProcessForm implements ActionContract{
 
     public function respond(): string{
 
-        return "contact list";
+        return "ProcessForm from class";
 
     }
 
