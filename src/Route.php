@@ -36,7 +36,7 @@ class Route {
 	 *
 	 * @return void
 	 */
-	public static function Get( string $route, callable $delegate ): void {
+	public static function Get( string $route, callable | string $delegate ): void {
 		self::$get[] = new RouteConfig( $route, $delegate );
 	}
 
@@ -48,7 +48,7 @@ class Route {
 	 *
 	 * @return void
 	 */
-	public static function Post( string $route, callable $delegate ): void {
+	public static function Post( string $route, callable | string $delegate ): void {
 		self::$post[] = new RouteConfig( $route, $delegate );
 	}
 
