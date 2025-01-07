@@ -2,13 +2,18 @@
 
 namespace Abruno\Rubrica\pages;
 
+use Abruno\Rubrica\RedirectResponse;
+use Abruno\Rubrica\Response;
+
 class ProcessForm implements ActionContract{
 
-    public function respond(): string{
+    public function respond(): Response{
 
-        var_dump($_POST);
+        // SALVARE NEI DATI IL NUOVO CONTATTO...
+        
+        // E RITORNARE ALLA LISTA
 
-        return "ProcessForm from class";
+        return new RedirectResponse("/");
     }
 
 }

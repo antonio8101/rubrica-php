@@ -21,9 +21,9 @@ $routeConfig = Route::Resolve(); // Risolvi la URI
 if (is_callable($routeConfig->delegate)){
     $delegate    = $routeConfig->delegate; // Instanzia il delegato in una variabile
     $value       = $delegate(); // Invoca il delegato corrispondente (uno di quelli definiti sopra)
+    echo $value;
 } else {
     $delegate = new $routeConfig->delegate();
     $value = $delegate->respond();
+    $value->send();
 }
-
-print($value);

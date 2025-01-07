@@ -2,18 +2,16 @@
 
 namespace Abruno\Rubrica\pages;
 
-use Abruno\Rubrica\View;
+use Abruno\Rubrica\Response;
+use Abruno\Rubrica\ViewResponse;
 
 class ContactForm implements ActionContract{
 
-    public function respond(): string{
+    public function respond(): Response{
 
-        $view = new View();
-
-        return $view->render("form.html.twig", [
+        return new ViewResponse("form.html.twig", [
             "test" => "IT WORKS!!!"
         ]);
-
     }
 
 }
