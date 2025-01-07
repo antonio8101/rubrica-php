@@ -12,5 +12,7 @@
             "email": "abruno@artiso.com"
         }
     ],
-    "require": {}
+    "require": {
+        "twig/twig": "^3.18"
+    }
 }

@@ -2,34 +2,23 @@
 
 namespace Abruno\Rubrica\pages;
 
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
+
 class ContactForm implements ActionContract{
 
     public function respond(): string{
 
-        $test = "prova";
+        $loader = new FilesystemLoader("/var/www/src/templates");
 
-        $format = <<<HTML
-            <!DOCTYPE html>
-            <html lang="en">
-            <head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Document</title>
-            </head>
-            <body>
+        $twig = new Environment($loader, [
+            'auto_reload' => true,
+            'debug' => true
+        ]);
 
-            IL VALORE di TEST è : %d
-
-                <!--un form che ci serve ad invocare la route / con il metodo POST-->
-                <form action="/" method="post">
-                    <input type="text" name="prova" id="prova">
-                    <button type="submit">submit</button>
-                </form>
-            </body>
-            </html>
-        HTML;
-
-        return sprintf($format, $test);
+        return $twig->render("form.html.twig", [
+            "test" => "IT WORKS!!!"
+        ]);
 
     }
 

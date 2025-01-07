@@ -6,8 +6,9 @@ class ProcessForm implements ActionContract{
 
     public function respond(): string{
 
-        return "ProcessForm from class";
+        var_dump($_POST);
 
+        return "ProcessForm from class";
     }
 
 }
