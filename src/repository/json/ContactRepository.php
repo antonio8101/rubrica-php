@@ -28,7 +28,18 @@ class ContactRepository implements RepositoryContract{
 	}
 
 	public function save( $data ): void {
-		// TODO: Implement save() method.
+		$collection = $this->getCollection();
+
+		$data->id = rand(0, 500000);
+
+		$collection[] = $data;
+
+		$serialized = json_encode( $collection, JSON_PRETTY_PRINT );
+
+		$resource   = fopen( $this->filePath, 'w' );
+
+		fwrite( $resource, $serialized );
+		fclose( $resource );
 	}
 
 	public function delete( mixed $id ): void {
@@ -40,10 +51,19 @@ class ContactRepository implements RepositoryContract{
 	}
 
 	public function all(): array {
-		return [];
+		return $this->getCollection();
 	}
 
 	public function search( callable $predicate ): array {
 		return [];
+	}
+
+	/**
+	 * Returns the collection from the Json archive file
+	 *
+	 * @return mixed
+	 */
+	private function getCollection(): mixed {
+		return json_decode( file_get_contents( $this->filePath ), true );
 	}
 }

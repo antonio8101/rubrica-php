@@ -2,31 +2,23 @@
 
 namespace Abruno\Rubrica\pages;
 
+use Abruno\Rubrica\repository\RepositoryContract;
 use Abruno\Rubrica\Response;
 use Abruno\Rubrica\ViewResponse;
-use Abruno\Rubrica\entity\Contact;
 use Abruno\Rubrica\Request;
+use Abruno\Rubrica\App;
 
 class ContactList implements ActionContract{
 
     public function respond(Request $request): Response{
 
-        $c1 = new Contact();
-        $c1->name = "Antonio";
-        $c1->surname = "Bruno";
-        $c1->email = "test@test.it";
+        $repository =  App::getService(RepositoryContract::class);
 
-        $c2 = new Contact();
-        $c2->name = "Paolo";
-        $c2->surname = "Test1";
-
-        $c3 = new Contact();
-        $c3->name = "Giuseppe";
-        $c3->surname = "Test2";
+        $contacts = $repository->all();
 
         $view = new ViewResponse("list.html.twig", [
             "title" => "Contact List",
-            "contatti" => [$c1, $c2, $c3]
+            "contatti" => $contacts
         ]);
 
         return $view;

@@ -10,7 +10,7 @@ class ContactForm implements ActionContract{
 
     public function respond(Request $request): Response{
 
-        //
+       
 
         return new ViewResponse("form.html.twig", [
             "test" => "IT WORKS!!!"
