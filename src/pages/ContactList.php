@@ -5,10 +5,11 @@ namespace Abruno\Rubrica\pages;
 use Abruno\Rubrica\Response;
 use Abruno\Rubrica\ViewResponse;
 use Abruno\Rubrica\entity\Contact;
+use Abruno\Rubrica\Request;
 
 class ContactList implements ActionContract{
 
-    public function respond(): Response{
+    public function respond(Request $request): Response{
 
         $c1 = new Contact();
         $c1->name = "Antonio";
