@@ -7,6 +7,7 @@ require_once "../vendor/autoload.php";
 use Abruno\Rubrica\pages\ContactForm;
 use Abruno\Rubrica\pages\ContactList;
 use Abruno\Rubrica\pages\ProcessForm;
+use Abruno\Rubrica\repository\json\ContactRepository;
 use Abruno\Rubrica\Request;
 use Abruno\Rubrica\Route; // Riferimento alla classe Route
 
@@ -17,6 +18,9 @@ Route::Get( "/new", ContactForm::class );
 Route::Post( "/", ProcessForm::class );
 
 $request = Request::Capture();
+
+$repository = new ContactRepository();
+$repository->createContainer();
 
 // Invochiamo la risoluzione della Route
 $routeConfig = Route::Resolve($request); // Risolvi la URI
