@@ -3,6 +3,7 @@
 namespace Abruno\Rubrica\repository\json;
 
 use Abruno\Rubrica\repository\RepositoryContract;
+use stdClass;
 
 class ContactRepository implements RepositoryContract{
 
@@ -23,7 +24,7 @@ class ContactRepository implements RepositoryContract{
 		}
 
 		if(!file_exists($this->filePath)){
-			file_put_contents($this->filePath, json_encode(new \stdClass()));
+			file_put_contents($this->filePath, json_encode(new stdClass()));
 		}		
 	}
 
@@ -34,16 +35,23 @@ class ContactRepository implements RepositoryContract{
 
 		$collection[] = $data;
 
-		$serialized = json_encode( $collection, JSON_PRETTY_PRINT );
-
-		$resource   = fopen( $this->filePath, 'w' );
-
-		fwrite( $resource, $serialized );
-		fclose( $resource );
+		$this->updateCollection( $collection );
 	}
 
 	public function delete( mixed $id ): void {
-		// TODO: Implement delete() method.
+		$collection = $this->getCollection();
+
+		$newCollection = [];
+
+		foreach($collection as $item){
+
+			if($item['id'] == $id)
+				continue;
+
+			$newCollection[] = $item;
+		}
+
+		$this->updateCollection( $newCollection );
 	}
 
 	public function get( mixed $id ) {
@@ -65,5 +73,19 @@ class ContactRepository implements RepositoryContract{
 	 */
 	private function getCollection(): mixed {
 		return json_decode( file_get_contents( $this->filePath ), true );
+	}
+
+	/**
+	 * @param mixed $collection
+	 *
+	 * @return void
+	 */
+	public function updateCollection( mixed $collection ): void {
+		$serialized = json_encode( $collection, JSON_PRETTY_PRINT );
+
+		$resource = fopen( $this->filePath, 'w' );
+
+		fwrite( $resource, $serialized );
+		fclose( $resource );
 	}
 }

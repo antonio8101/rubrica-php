@@ -38,7 +38,7 @@ class RouteConfig{
             $reflection = new ReflectionClass($delegate);
             return $reflection->implementsInterface(ActionContract::class);
         }
-
+        
         return false;
     }
 

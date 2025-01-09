@@ -6,6 +6,7 @@ require_once "../vendor/autoload.php";
 
 use Abruno\Rubrica\pages\ContactForm;
 use Abruno\Rubrica\pages\ContactList;
+use Abruno\Rubrica\pages\DeleteItem;
 use Abruno\Rubrica\pages\ProcessForm;
 use Abruno\Rubrica\repository\json\ContactRepository;
 use Abruno\Rubrica\repository\RepositoryContract;
@@ -17,6 +18,7 @@ use Abruno\Rubrica\App;
 Route::Get( "/", ContactList::class );
 Route::Get( "/list", ContactList::class );
 Route::Get( "/new", ContactForm::class );
+Route::Get( "/delete", DeleteItem::class );
 Route::Post( "/", ProcessForm::class );
 
 $request = Request::Capture();
