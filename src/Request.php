@@ -11,7 +11,8 @@ class Request {
         $params = array_merge($_GET, $_POST);
 
         if (isset($_FILES)){
-            $params = array_merge($params, ["files", $_FILES]);
+			// QUI UNA FIX
+            $params = array_merge($params, ["files" => $_FILES]);
         }
 
         $this->params = (object) $params;

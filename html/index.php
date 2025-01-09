@@ -13,6 +13,8 @@ use Abruno\Rubrica\repository\RepositoryContract;
 use Abruno\Rubrica\Request;
 use Abruno\Rubrica\Route; // Riferimento alla classe Route
 use Abruno\Rubrica\App;
+use Abruno\Rubrica\UploadManager;
+use Abruno\Rubrica\UploadManagerContract;
 
 // Impostazione delle Route (tramite metodi statici Get/Post)
 Route::Get( "/", ContactList::class );
@@ -23,7 +25,8 @@ Route::Post( "/", ProcessForm::class );
 
 $request = Request::Capture();
 
-
+// REGISTRO UN NUOVO SERVIZIO RESPONSABILE DI GESTIRE IL CARICAMENTO DELLE IMMAGINI
+App::registerService(UploadManagerContract::class, new UploadManager());
 App::registerService(RepositoryContract::class, new ContactRepository());
 
 // PRIMO UTILIZZO DEL REPOSITORY
