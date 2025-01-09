@@ -1,13 +1,89 @@
 {% extends 'base.html.twig' %}
 
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="#">New</a></li>
+{% endblock %}
+
 {% block content %}
 
-    IL VALORE di TEST è : {{ test }}
+    <h1 class="mb-3">New Contact</h1>
 
-    <!--un form che ci serve ad invocare la route / con il metodo POST-->
-    <form action="/" method="post">
-        <input type="text" name="prova" id="prova">
-        <button type="submit">submit</button>
-    </form>
+    <form action="/" id="contact-form" method="post" enctype="multipart/form-data">
+
+            <div class="row mb-4">
+                <div class="col">
+                    <!-- Name input -->
+                    <div data-mdb-input-init class="form-outline">
+                        <input type="text" name="name" id="name" class="form-control" required/>
+                        <label class="form-label" for="name">Name</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <!-- Lastname input -->
+                    <div data-mdb-input-init class="form-outline">
+                        <input type="text" name="lastname" id="lastname" class="form-control" />
+                        <label class="form-label" for="lastname">Surname</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Company input -->
+            <div data-mdb-input-init class="form-outline mb-4">
+                <input type="text" name="company" id="company" class="form-control" />
+                <label class="form-label" for="company">Company</label>
+            </div>
+
+            <!-- Address input -->
+            <div data-mdb-input-init class="form-outline mb-4">
+                <input type="text" name="address" id="address" class="form-control" />
+                <label class="form-label" for="address">Address</label>
+            </div>
+
+            <!-- Email input -->
+            <div data-mdb-input-init class="form-outline mb-4">
+                <input type="email" name="email" id="email" class="form-control" />
+                <label class="form-label" for="email">Email</label>
+            </div>
+
+            <!-- Number input -->
+            <div data-mdb-input-init class="form-outline mb-4">
+                <input type="number" name="phone" id="phone" class="form-control"/>
+                <label class="form-label" for="phone">Phone</label>
+            </div>
+
+            <div id="picture-container" class="row mb-4">
+                <div id="picture-container-label" class="col-1">
+                    <div data-mdb-input-init class="form-outline">
+                        <div class="form-control" style="border:0">
+                            Picture
+                        </div>
+                        <input type="text" class="form-control visually-hidden" id="fileNameDisplay" style="background-color: unset; border:0;" disabled>
+                        <label class="form-label" style="border:0" for="fileNameDisplay"></label>
+                    </div>
+                </div>
+                <div class="col-11">
+                    <div data-mdb-input-init class="form-outline">
+                        <input type="file" name="pic" class="form-control" id="pic"/>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Message input -->
+            <div data-mdb-input-init class="form-outline mb-4">
+                <textarea class="form-control" name="info" id="info" rows="4"></textarea>
+                <label class="form-label" for="info">Additional Info</label>
+            </div>
+
+            <button data-mdb-ripple-init id="submit" type="button" class="btn btn-primary btn-block mb-4">Create</button>
+
+        </form>
+
+    <script>
+        document.getElementById("name").focus();
+        document.getElementById("submit").addEventListener("click", function(){
+            const form = document.getElementById("contact-form");
+            HTMLFormElement.prototype.submit.call(form);
+        });
+    </script>
 
 {% endblock %}

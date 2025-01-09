@@ -12,7 +12,7 @@ class ProcessForm implements ActionContract{
         // SALVARE NEI DATI IL NUOVO CONTATTO...
         
         // E RITORNARE ALLA LISTA
-
+    
         return new RedirectResponse("/");
     }
 
