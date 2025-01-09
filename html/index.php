@@ -11,7 +11,7 @@ use Abruno\Rubrica\Route; // Riferimento alla classe Route
 
 // Impostazione delle Route (tramite metodi statici Get/Post)
 Route::Get( "/", ContactList::class );
-Route::Get( "/list", fn() => "List" );
+Route::Get( "/list", ContactList::class );
 Route::Get( "/new", ContactForm::class );
 Route::Post( "/", ProcessForm::class );
 
