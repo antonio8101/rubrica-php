@@ -15,8 +15,7 @@ class Request {
             $params = array_merge($params, ["files" => $_FILES]);
         }
 
-        $this->params = (object) $params;
-
+        $this->params = (object) $params; // stdClass
     }
 
     public function __get($name){
